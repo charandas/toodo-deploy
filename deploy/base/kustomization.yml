@@ -10,4 +10,6 @@ images:
   newTag: 0.0.1
 - name: buffalo
   newName: localhost:5000/toodo-init-container
-  newTag: 0.0.1
+  newTag: 0.0.2
+generators:
+  - secret-generator.yaml

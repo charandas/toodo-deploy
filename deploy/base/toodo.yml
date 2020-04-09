@@ -23,8 +23,20 @@ spec:
           env:
             - name: GO_ENV
               value: production
+            - name: DB_HOST
+              value: postgres
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
             - name: DATABASE_URL
-              value: "postgres://postgres:postgres@postgres:5432/toodo_production?sslmode=disable"
+              value: "postgres://$(DB_USER):$(DB_PASS)@$(DB_HOST):5432/toodo_production?sslmode=disable"
       containers:
         - name: toodo
           image: toodo
@@ -36,8 +48,20 @@ spec:
           env:
             - name: GO_ENV
               value: production
+            - name: DB_HOST
+              value: postgres
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: username
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: password
             - name: DATABASE_URL
-              value: "postgres://postgres:postgres@postgres:5432/toodo_production?sslmode=disable"
+              value: "postgres://$(DB_USER):$(DB_PASS)@$(DB_HOST):5432/toodo_production?sslmode=disable"
 ---
 apiVersion: v1
 kind: Service
