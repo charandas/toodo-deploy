@@ -19,19 +19,19 @@ spec:
       initContainers:
         - name: init-mydb
           image: buffalo
-          command: ["sh", "-c", "buffalo db create && buffalo db migrate"]
+          command: ["sh", "-c", "buffalo db create || buffalo db migrate"]
           env:
             - name: GO_ENV
               value: production
             - name: DB_HOST
-              value: postgres
+              value: toodo-postgresql-headless
             - name: DB_USER
               value: postgres
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
-                  key: password
+                  key: postgresql-password
             - name: DATABASE_URL
               value: "postgres://$(DB_USER):$(DB_PASS)@$(DB_HOST):5432/toodo_production?sslmode=disable"
       containers:
@@ -46,17 +46,14 @@ spec:
             - name: GO_ENV
               value: production
             - name: DB_HOST
-              value: postgres
+              value: toodo-postgresql-headless
             - name: DB_USER
-              valueFrom:
-                secretKeyRef:
-                  name: postgres-secret
-                  key: username
+              value: postgres
             - name: DB_PASS
               valueFrom:
                 secretKeyRef:
                   name: postgres-secret
-                  key: password
+                  key: postgresql-password
             - name: DATABASE_URL
               value: "postgres://$(DB_USER):$(DB_PASS)@$(DB_HOST):5432/toodo_production?sslmode=disable"
 ---

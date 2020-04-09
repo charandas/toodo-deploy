@@ -4,6 +4,9 @@ namespace: gobuffalo
 resources:
   - namespace.yml
   - toodo.yml
+  - postgres-pv.yml
+  - postgres-pvc.yml
+  - db.yml
 images:
 - name: toodo
   newName: localhost:5000/toodo
