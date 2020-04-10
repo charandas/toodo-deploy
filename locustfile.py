@@ -32,7 +32,7 @@ class UserBehavior(TaskSet):
       def newItemsPage(self):
          self.client.get("/items/new", verify=False)
 
-      @task(1)
+      @task(5)
       def addItem(self):
          self.client.post("/items", {
             "Body":"Some todo:" + str(uuid.uuid4()),

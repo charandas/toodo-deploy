@@ -10,7 +10,7 @@ resources:
 images:
 - name: toodo
   newName: localhost:5000/toodo
-  newTag: 0.0.1
+  newTag: 0.0.2
 - name: buffalo
   newName: localhost:5000/toodo-init-container
   newTag: 0.0.2
