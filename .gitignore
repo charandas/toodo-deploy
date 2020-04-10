@@ -1,1 +1,5 @@
 deploy/base/postgres-secret.yml
+
+# Locust edge files
+__pycache__
+src

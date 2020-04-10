@@ -11,4 +11,5 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/vda1/pv-vol"
+    path: "/data/toodo-postgres-vol"
+
