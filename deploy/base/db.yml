@@ -70,7 +70,7 @@ spec:
         release: "toodo"
         heritage: "Helm"
         role: master
-    spec:
+    spec:      
       securityContext:
         fsGroup: 1001
       containers:
@@ -134,7 +134,7 @@ spec:
               mountPath: /dev/shm
             - name: data
               mountPath: /bitnami/postgresql
-              subPath:
+              subPath: 
       volumes:
         - name: dshm
           emptyDir:

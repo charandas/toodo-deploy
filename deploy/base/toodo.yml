@@ -6,7 +6,7 @@ metadata:
   labels:
     app: toodo
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: toodo
@@ -45,6 +45,11 @@ spec:
           env:
             - name: GO_ENV
               value: production
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: session-secret
+                  key: signing_secret
             - name: DB_HOST
               value: toodo-postgresql-headless
             - name: DB_USER
@@ -67,6 +72,22 @@ spec:
   selector:
     app: toodo
   type: ClusterIP
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: listen-svc
+      name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: toodo-node-port
+  labels:
+    app: toodo
+spec:
+  selector:
+    app: toodo
+  type: NodePort
   ports:
     - protocol: TCP
       port: 3000

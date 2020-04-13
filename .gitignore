@@ -1,4 +1,5 @@
 deploy/base/postgres-secret.yml
+deploy/base/session-secret.yml
 
 # Locust edge files
 __pycache__

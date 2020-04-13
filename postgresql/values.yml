@@ -1,0 +1,9 @@
+global:
+  postgresql:
+    existingSecret: "postgres-secret"
+persistence:
+  existingClaim: "postgres-pvc"
+resources:
+  requests:
+    cpu: "2000m"
+    memory: "4Gi"
